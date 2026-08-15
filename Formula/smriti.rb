@@ -1,8 +1,8 @@
 class Smriti < Formula
   desc "Fully-offline, Google-Photos-style library for your local photos"
   homepage "https://github.com/jadonharsh109/smriti.photos"
-  url "https://github.com/jadonharsh109/smriti.photos/releases/download/v0.1.3/smriti_photos-0.1.3.tar.gz"
-  sha256 "bc2b47415fbecdf85c5a85792f9d96b1b72ef3db9746be4b9661baf71e90964d"
+  url "https://github.com/jadonharsh109/smriti.photos/releases/download/v0.1.5/smriti_photos-0.1.5.tar.gz"
+  sha256 "1cf68799368cc5dc42b2594f9911b3183b27d3268728e6d66cba2e321c00e4ad"
 
   depends_on "ffmpeg"
   depends_on "python@3.12"
