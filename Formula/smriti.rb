@@ -1,8 +1,8 @@
 class Smriti < Formula
   desc "Fully-offline, Google-Photos-style library for your local photos"
   homepage "https://github.com/jadonharsh109/smriti.photos"
-  url "https://github.com/jadonharsh109/smriti.photos/releases/download/v0.1.2/smriti_photos-0.1.2.tar.gz"
-  sha256 "5724fe27f321989bdb0f35376236f6dc6a92421e175602e0e2964e5ccc65afe0"
+  url "https://github.com/jadonharsh109/smriti.photos/releases/download/v0.1.3/smriti_photos-0.1.3.tar.gz"
+  sha256 "bc2b47415fbecdf85c5a85792f9d96b1b72ef3db9746be4b9661baf71e90964d"
 
   depends_on "ffmpeg"
   depends_on "python@3.12"
@@ -25,11 +25,12 @@ class Smriti < Formula
   def caveats
     <<~EOS
       Start Smriti with:
-        smriti                      # serves your library at http://localhost:8000
+        smriti                      # foreground at http://localhost:6969
+        smriti start                # …or in the background (stop/status/logs -f)
 
       One-time extras:
         smriti models               # ~280 MB face models — enables People
-        brew services start smriti  # keep it running in the background
+        brew services start smriti  # alternative: launchd runs it at login
 
       Your library index lives in ~/.smriti (originals are never modified).
     EOS
