@@ -3,6 +3,7 @@ class Smriti < Formula
   homepage "https://github.com/jadonharsh109/smriti.photos"
   url "https://github.com/jadonharsh109/smriti.photos/releases/download/v0.1.0/smriti_photos-0.1.0.tar.gz"
   sha256 "df80c7121a320a68ab148b7a1d8435feb4ea2e834904a2630a8cbda007732401"
+  revision 1
 
   depends_on "ffmpeg"
   depends_on "python@3.12"
@@ -13,8 +14,26 @@ class Smriti < Formula
     # onnxruntime & friends must never be compiled here
     system python, "-m", "venv", libexec
     system libexec/"bin/pip", "install", "--upgrade", "--quiet", "pip"
-    system libexec/"bin/pip", "install", "--no-cache-dir", buildpath
+    ohai "Downloading Python dependencies (~250 MB from PyPI) — this can take a few minutes; " \
+         "run with --verbose to watch progress"
+    # natives must come as wheels or fail fast — never a silent hour-long source build
+    system libexec/"bin/pip", "install", "--no-cache-dir",
+           "--only-binary", "onnxruntime,numpy,scipy,scikit-learn,pillow,pillow-heif",
+           buildpath
     bin.install_symlink libexec/"bin/smriti"
+  end
+
+  def caveats
+    <<~EOS
+      Start Smriti with:
+        smriti                      # serves your library at http://localhost:8000
+
+      One-time extras:
+        smriti models               # ~280 MB face models — enables People
+        brew services start smriti  # keep it running in the background
+
+      Your library index lives in ~/.smriti (originals are never modified).
+    EOS
   end
 
   service do
